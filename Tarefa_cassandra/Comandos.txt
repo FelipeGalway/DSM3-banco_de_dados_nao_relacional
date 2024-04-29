@@ -1,0 +1,130 @@
+// Criando a column family "carros"
+create table cassandra.carros (
+	id uuid,
+	marca text,
+	placa text,
+	modelo text,
+	cor text,
+	combustivel set<text>,
+	ano_fabric int,
+	preco decimal,
+	primary key(marca, placa)
+);
+
+// Inserindo 8 valores
+insert into cassandra.carros(id, marca, placa, modelo, cor, combustivel, ano_fabric, preco)
+values(
+	uuid(), 
+	'Volkswagen', 
+	'GDF1867', 
+	'Gol', 
+	'Prata',
+	{'álcool', 'gasolina'},
+	2010,
+	18000
+);
+
+insert into cassandra.carros(id, marca, placa, modelo, cor, combustivel, ano_fabric, preco)
+values(
+	uuid(), 
+	'Fiat', 
+	'AAF1977', 
+	'Palio', 
+	'Preto',
+	{'gasolina'},
+	2002,
+	10000
+);
+
+
+insert into cassandra.carros(id, marca, placa, modelo, cor, combustivel, ano_fabric, preco)
+values(
+	uuid(), 
+	'Honda', 
+	'FFR0805', 
+	'Civic', 
+	'Branco',
+	{'álcool', 'gasolina'},
+	2014,
+	30000
+);
+
+insert into cassandra.carros(id, marca, placa, modelo, cor, combustivel, ano_fabric, preco)
+values(
+	uuid(), 
+	'Hyundai', 
+	'POL5489', 
+	'HB20', 
+	'Prata',
+	{'álcool', 'gasolina'},
+	2020,
+	45000
+);
+
+
+insert into cassandra.carros(id, marca, placa, modelo, cor, combustivel, ano_fabric, preco)
+values(
+	uuid(), 
+	'Reanult', 
+	'MNS6547', 
+	'Kwid', 
+	'Branco',
+	{'álcool', 'gasolina'},
+	2024,
+	60000
+);
+
+insert into cassandra.carros(id, marca, placa, modelo, cor, combustivel, ano_fabric, preco)
+values(
+	uuid(), 
+	'Chevrolet', 
+	'MTS8542', 
+	'Onix', 
+	'Prata',
+	{'álcool', 'gasolina'},
+	2018,
+	40000
+);
+
+
+insert into cassandra.carros(id, marca, placa, modelo, cor, combustivel, ano_fabric, preco)
+values(
+	uuid(), 
+	'Volkswagen', 
+	'PLS8452', 
+	'Santana', 
+	'Vermelho',
+	{'gasolina'},
+	1996,
+	13000
+);
+
+
+insert into cassandra.carros(id, marca, placa, modelo, cor, combustivel, ano_fabric, preco)
+values(
+	uuid(), 
+	'Ford', 
+	'TAS8648', 
+	'Ka', 
+	'Verde',
+	{'gasolina'},
+	2000,
+	10000
+);
+
+// Alterações na tabela
+update cassandra.carros
+set preco = 16000
+where marca = 'Volkswagen' and placa = 'GDF1867';
+
+update cassandra.carros
+set cor = 'Prata'
+where marca = 'Ford' and placa = 'TAS8648';
+
+update cassandra.carros
+set combustivel = {'gasolina'}
+where marca = 'Chevrolet' and placa = 'MTS8542';
+
+// Excluindo um registro
+delete from cassandra.carros
+where marca = 'Chevrolet' and placa = 'MTS8542';
